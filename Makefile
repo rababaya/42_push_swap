@@ -1,25 +1,16 @@
 CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror
+CFLAGS				=	-Wall -Wextra -Werror -I 42_libft
 RM					=	rm -f
-PUSH_SWAP			=	push_swap
-NAME				=	$(PUSH_SWAP)
+NAME				=	push_swap
  
 # Libraries
-LIBFT				=	libft.a
-LIBFT_NAME			=	ft
-LIBFT_DIR			=	libs/libft
-LIBFT_FILE			=	$(LIBFT_DIR)/$(LIBFT)
-CFLAGS				+=	-I $(LIBFT_DIR)/include -I includes
- 
-LDFLAGS     		=	-L$(LIBFT_DIR) -l$(LIBFT_NAME)
- 
+LIBFT_FILE			=	42_libft/libft.a
+LDFLAGS     		=	-L 42_libft -l ft
 MAKE_LIB			=	make -C
  
 STACK_SRC_DIR		=	srcs/stack
 PUSH_SWAP_SRC_DIR	=	srcs/push_swap
 VALIDATION_SRC_DIR	=	srcs/validation
-STACK_INC			=	includes/stack.h #headerner@ ara
-PUSH_SWAP_INC		=	$(STACK_INC) includes/push_swap.h
  
 STACK_SRC			=	$(STACK_SRC_DIR)/stack_init.c \
 						$(STACK_SRC_DIR)/stack_init_helper.c \
@@ -39,36 +30,35 @@ VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation_main.c \
  
 PS_SRC				=	$(PUSH_SWAP_SRC_DIR)/default_sorts.c
  
-PUSH_SWAP_SRC		=	main.c \
-						$(STACK_SRC) \
-						$(VALIDATION_SRC) \
-						$(PS_SRC)
+PUSH_SWAP_SRC		=	main.c #\
+						#$(STACK_SRC) \
+						#$(VALIDATION_SRC) \
+						#$(PS_SRC) 
  
-all:				$(PUSH_SWAP)
+LIB					=	$(LIBFT_FILE)
+PUSH_SWAP_OBJ		=	$(PUSH_SWAP_SRC:%.c=obj/push_swap/%.o)
+
+all:				$(NAME)
  
 #bonus:				$(CHECKER)
  
 obj:
-					mkdir -p obj
- 
-LIB					=	$(LIBFT_FILE)
-PUSH_SWAP_OBJ		=	$(PUSH_SWAP_SRC:%.c=obj/push_swap/%.o)
- 
+
 $(PUSH_SWAP_OBJ):	obj/push_swap/%.o: %.c
 					@mkdir -p $(dir $@)
 					$(CC) $(CFLAGS) -c $< -o $@
  
 $(LIBFT_FILE):
-					$(MAKE_LIB) $(LIBFT_DIR)
+					$(MAKE_LIB) 42_libft
  
-$(PUSH_SWAP):		$(LIB) $(PUSH_SWAP_OBJ)
+$(NAME):			$(LIB) $(PUSH_SWAP_OBJ)
 					$(CC) $(CFLAGS) $(PUSH_SWAP_OBJ) $(LDFLAGS) -o $@
  
 lib_clean:
-					$(MAKE_LIB) $(LIBFT_DIR) clean
+					$(MAKE_LIB) 42_libft clean
  
 lib_fclean:
-					$(MAKE_LIB) $(LIBFT_DIR) fclean
+					$(MAKE_LIB) 42_libft fclean
  
 clean:				lib_clean
 					rm -rf obj

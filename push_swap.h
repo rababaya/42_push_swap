@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 14:01:35 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/06 12:53:25 by rababaya         ###   ########.fr       */
+/*   Created: 2025/04/06 14:19:22 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/06 15:23:17 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-void	*ft_calloc(size_t count, size_t size)
+# include "libft.h"
+# include "ft_printf.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h> // navsyaki
+
+typedef struct s_stack
 {
-	void		*res;
+	int		content;
+//	size_t	index;  /*navsyaki 2*/
+	struct	s_stack	*next;
+}	t_stack;
 
-	res = malloc(count * size);
-	if (res)
-	{
-		ft_bzero(res, count * size);
-		return (res);
-	}
-	return (NULL);
-}
+#endif
