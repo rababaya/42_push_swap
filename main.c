@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 13:36:49 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/06 18:59:04 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:50:21 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	main(int argc, char **argv)
 		int		j;
 		int		*unsorted;
 		int		*sorted;
-		t_stack	stack_a;
+		t_stack	*stack_a;
+		t_stack	*tmp;
 
 
 		len = argc - 1;
@@ -58,17 +59,26 @@ int	main(int argc, char **argv)
 		sorted = bubble_sort(sorted, len);
 		i = 0;
 		j = 0;
+		stack_a = NULL;
 		while (i < len)
 		{
-			if (unsorted[i] = sorted[j])
+			if (unsorted[i] == sorted[j])
 			{
-				stack_a.content = j;
-
+				tmp = ft_stacknew(j);
+				ft_stackadd_back(&stack_a, tmp);
 				j = 0;
 				i++;
 			}
 			else
 				j++;
 		}
+
+		tmp = stack_a;
+		while (stack_a)
+		{
+			ft_printf("%d", stack_a->content);
+			stack_a = stack_a->next;
+		}
+		stack_a = tmp;
 	}
 }

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_stackiter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 14:01:35 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/07 17:26:55 by rababaya         ###   ########.fr       */
+/*   Created: 2025/01/31 11:56:40 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/07 17:23:04 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_stackiter(t_stack *lst, void (*f)(int))
 {
-	void		*res;
-
-	res = malloc(count * size);
-	if (res)
+	while (lst && f)
 	{
-		ft_bzero(res, count * size);
-		return (res);
+		f(lst->content);
+		lst = lst->next;
 	}
-	return (NULL);
+	return ;
 }
