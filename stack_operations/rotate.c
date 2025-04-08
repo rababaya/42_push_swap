@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stackdelone.c                                   :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 10:40:00 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/08 15:43:16 by rababaya         ###   ########.fr       */
+/*   Created: 2025/04/08 17:13:14 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/08 18:44:15 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_stackdelone(t_stack *lst)
+void	rotate(t_stack **stack)
 {
-	if (lst)
-	{
-		free(lst);
+	t_stack	*start;
+	t_stack	*tmp;
+
+	if (!*stack || !(*stack)->next)
 		return ;
-	}
+	start = (*stack)->next;
+	tmp = ft_stacklast(*stack);
+	tmp->next = *stack;
+	(*stack)->next = NULL;
+	(*stack) = start;
 }

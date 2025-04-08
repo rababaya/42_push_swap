@@ -8,20 +8,25 @@ LIBFT_FILE			=	42_libft/libft.a
 LDFLAGS     		=	-L 42_libft -l ft
 MAKE_LIB			=	make -C
  
-STACK_SRC_DIR		=	list_operations
-PUSH_SWAP_SRC_DIR	=	srcs/push_swap
+LIST_SRC_DIR		=	list_operations
+STACK_SRC_DIR		=	stack_operations
 VALIDATION_SRC_DIR	=	srcs/validation
  
-STACK_SRC           =	$(STACK_SRC_DIR)/ft_stackadd_back.c \
-						$(STACK_SRC_DIR)/ft_stackclear.c \
-						$(STACK_SRC_DIR)/ft_stackiter.c \
-						$(STACK_SRC_DIR)/ft_stackmap.c \
-						$(STACK_SRC_DIR)/ft_stacksize.c \
-						$(STACK_SRC_DIR)/ft_stackadd_front.c \
-                        $(STACK_SRC_DIR)/ft_stackdelone.c \
-						$(STACK_SRC_DIR)/ft_stacklast.c \
-						$(STACK_SRC_DIR)/ft_stacknew.c 
- 
+LIST_SRC			=	$(LIST_SRC_DIR)/ft_stackadd_back.c \
+						$(LIST_SRC_DIR)/ft_stackclear.c \
+						$(LIST_SRC_DIR)/ft_stackiter.c \
+						$(LIST_SRC_DIR)/ft_stackmap.c \
+						$(LIST_SRC_DIR)/ft_stacksize.c \
+						$(LIST_SRC_DIR)/ft_stackadd_front.c \
+						$(LIST_SRC_DIR)/ft_stackdelone.c \
+						$(LIST_SRC_DIR)/ft_stacklast.c \
+						$(LIST_SRC_DIR)/ft_stacknew.c
+
+STACK_SRC			=	$(STACK_SRC_DIR)/swap.c \
+						$(STACK_SRC_DIR)/push.c \
+						$(STACK_SRC_DIR)/rotate.c \
+						$(STACK_SRC_DIR)/r_rotate.c
+
 VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation_main.c \
 						$(VALIDATION_SRC_DIR)/validation_numbers.c \
 						$(VALIDATION_SRC_DIR)/validation_duplicates.c \
@@ -33,6 +38,7 @@ VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation_main.c \
 PS_SRC				=	$(PUSH_SWAP_SRC_DIR)/default_sorts.c
  
 PUSH_SWAP_SRC		=	main.c \
+						$(LIST_SRC) \
 						$(STACK_SRC) #\
 						#$(VALIDATION_SRC) \
 						#$(PS_SRC) 

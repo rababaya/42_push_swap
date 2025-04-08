@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stackdelone.c                                   :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 10:40:00 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/08 15:43:16 by rababaya         ###   ########.fr       */
+/*   Created: 2025/04/08 16:16:00 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/08 17:08:40 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_stackdelone(t_stack *lst)
+void	push(t_stack **stack, t_stack **dst)
 {
-	if (lst)
-	{
-		free(lst);
+	t_stack	*tmp;
+
+	if (!stack)
 		return ;
-	}
+	tmp = (*stack)->next;
+	ft_stackadd_front(dst, *stack);
+	*stack = tmp;
 }

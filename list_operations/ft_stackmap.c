@@ -6,13 +6,13 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:02:20 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/07 17:23:22 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:41:52 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_stackmap(t_stack *lst, int (*f)(int), void (*del)(int))
+t_stack	*ft_stackmap(t_stack *lst, int (*f)(int))
 {
 	t_stack	*tmp;
 	t_stack	*ret;
@@ -25,7 +25,7 @@ t_stack	*ft_stackmap(t_stack *lst, int (*f)(int), void (*del)(int))
 			ft_stackadd_back(&ret, tmp);
 		else
 		{
-			ft_stackclear(&ret, del);
+			ft_stackclear(&ret);
 			return (NULL);
 		}
 		lst = lst->next;
