@@ -35,15 +35,14 @@ VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation_main.c \
 						$(VALIDATION_SRC_DIR)/validation_limits.c \
 						$(VALIDATION_SRC_DIR)/error_handling.c
  
-PS_SRC				=	$(PUSH_SWAP_SRC_DIR)/default_sorts.c
+PS_SRC				=	sorting.c
  
 PUSH_SWAP_SRC		=	main.c \
 						$(LIST_SRC) \
-						$(STACK_SRC) #\
-						#$(VALIDATION_SRC) \
-						#$(PS_SRC) 
+						$(STACK_SRC) \
+						$(PS_SRC) #\
+						$(VALIDATION_SRC) \
  
-LIB					=	$(LIBFT_FILE)
 PUSH_SWAP_OBJ		=	$(PUSH_SWAP_SRC:%.c=obj/push_swap/%.o)
 
 all:				$(NAME)
@@ -59,7 +58,7 @@ $(PUSH_SWAP_OBJ):	obj/push_swap/%.o: %.c
 $(LIBFT_FILE):
 					$(MAKE_LIB) 42_libft
  
-$(NAME):			$(LIB) $(PUSH_SWAP_OBJ)
+$(NAME):			$(LIBFT_FILE) $(PUSH_SWAP_OBJ)
 					$(CC) $(CFLAGS) $(PUSH_SWAP_OBJ) $(LDFLAGS) -o $@
  
 lib_clean:

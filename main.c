@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:37 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/08 18:54:48 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:34:56 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,13 @@ int	main(int argc, char **argv)
 			j++;
 	}
 	/*testi skizb */
-	r_rotate(&stack_a);
-	tmp = stack_a;
-	while (stack_a)
+	tmp = NULL;
+	sorting(&stack_a, &tmp);
+	while (tmp)
 	{
-		ft_printf("%d\n", stack_a->content);
-		stack_a = stack_a->next;
+		ft_printf("tmp: %d\n", tmp->content);
+		tmp = tmp->next;
 	}
-	stack_a = tmp;
 	/* testi verj*/
 	ft_stackclear(&stack_a);
 	free(sorted);

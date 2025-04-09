@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 16:16:00 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/08 17:08:40 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:09:04 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	push(t_stack **stack, t_stack **dst)
 {
 	t_stack	*tmp;
 
-	if (!stack)
+	if (!(*stack))
 		return ;
 	tmp = (*stack)->next;
 	ft_stackadd_front(dst, *stack);
