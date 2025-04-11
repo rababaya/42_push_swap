@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:26:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/09 16:51:52 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:57:11 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,41 @@ void	sorting(t_stack **stack_a, t_stack **stack_b)
 		}
 		else
 			rotate((stack_a));
+	}
+	filling_stack_a(stack_a, stack_b);
+}
+
+void	filling_stack_a(t_stack **stack_a, t_stack **stack_b)
+{
+	int		current;
+	int		pos;
+	int		size;
+	t_stack	*tmp;
+
+	size = ft_stacksize(*stack_b);
+	current = size - 1;
+	while (current >= 0)
+	{
+		pos = 0;
+		tmp = *stack_b;
+		size = ft_stacksize(tmp);
+		while (tmp && tmp->content != current)
+		{
+			tmp = tmp->next;
+			pos++;
+		}
+		if (pos <= size / 2)
+		{
+			while (pos-- > 0)
+				rotate(stack_b);
+		}
+		else
+		{
+			pos = size - pos;
+			while (pos-- > 0)
+				r_rotate(stack_b);
+		}
+		push(stack_b, stack_a);
+		current--;
 	}
 }
