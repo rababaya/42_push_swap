@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:26:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/11 16:57:11 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:05:17 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	sorting(t_stack **stack_a, t_stack **stack_b)
 	int		len;
 	int		dev;
 
-	if (!(*stack_a))
+	if (!(*stack_a)) ///jnjel validaciaic heto
 		return ;
 	counter = 0;
 	len = ft_stacksize(*stack_a);
@@ -54,52 +54,59 @@ void	sorting(t_stack **stack_a, t_stack **stack_b)
 	{
 		if ((*stack_a)->content <= counter)
 		{
-			push((stack_a), (stack_b));
-			rotate((stack_b));
+			push_b((stack_a), (stack_b));
+			rotate_b((stack_b));
 			counter++;
 		}
 		else if ((*stack_a)->content <= counter + dev)
 		{
-			push((stack_a), (stack_b));
+			push_b((stack_a), (stack_b));
 			counter++;
 		}
 		else
-			rotate((stack_a));
+			rotate_a((stack_a));
 	}
 	filling_stack_a(stack_a, stack_b);
+}
+
+static void	filling_helper(t_stack **stack_a, t_stack **stack_b, int current)
+{
+	t_stack	*tmp;
+	int		pos;
+	int		size;
+
+	pos = 0;
+	tmp = *stack_b;
+	size = ft_stacksize(tmp);
+	while (tmp && tmp->content != current)
+	{
+		tmp = tmp->next;
+		pos++;
+	}
+	if (pos <= size / 2)
+	{
+		while (pos-- > 0)
+			rotate_b(stack_b);
+	}
+	else
+	{
+		pos = size - pos;
+		while (pos-- > 0)
+			r_rotate_b(stack_b);
+	}
+	push_a(stack_b, stack_a);
 }
 
 void	filling_stack_a(t_stack **stack_a, t_stack **stack_b)
 {
 	int		current;
-	int		pos;
 	int		size;
-	t_stack	*tmp;
 
 	size = ft_stacksize(*stack_b);
 	current = size - 1;
 	while (current >= 0)
 	{
-		pos = 0;
-		tmp = *stack_b;
-		size = ft_stacksize(tmp);
-		while (tmp && tmp->content != current)
-		{
-			tmp = tmp->next;
-			pos++;
-		}
-		if (pos <= size / 2)
-		{
-			while (pos-- > 0)
-				rotate(stack_b);
-		}
-		else
-		{
-			pos = size - pos;
-			while (pos-- > 0)
-				r_rotate(stack_b);
-		}
-		push(stack_b, stack_a);
+		filling_helper(stack_a, stack_b, current);
 		current--;
 	}
 }
