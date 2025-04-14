@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:19:22 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/12 14:20:09 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:09:54 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ typedef struct s_stack
 
 void	filling_stack_a(t_stack **stack_a, t_stack **stack_b);
 void	sorting(t_stack **stack_a, t_stack **stack_b);
+
+void	sort_for_5(t_stack **stack_a, t_stack **stack_b);
+void	sort_for_4(t_stack **stack_a, t_stack **stack_b);
+void	sort_for_3(t_stack **stack_a);
 
 void	swap_a(t_stack *stack);
 void	swap_b(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:37 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/12 14:30:55 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:02:44 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,20 @@ int	*bubble_sort(int *sorting, int length)
 	return (sorting);
 }
 
+static int	if_sorted(int *arr, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (arr[i + 1] < arr[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	int		len;
@@ -55,6 +69,11 @@ int	main(int argc, char **argv)
 		sorted[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
+
+	i = 0;
+
+	if (if_sorted(unsorted, len))
+			return (0);
 	sorted = bubble_sort(sorted, len);
 	i = 0;
 	j = 0;
@@ -73,13 +92,11 @@ int	main(int argc, char **argv)
 	}
 	/*testi skizb */
 	tmp = NULL;
-	sorting(&stack_a, &tmp);
-	/*while (stack_a)
-	{
-		ft_printf("stack_a: %d\n", stack_a->content);
-		stack_a = stack_a->next;
-	}
-	 testi verj*/
+	if (len == 3)
+		sort_for_3(&stack_a);
+	else
+		sorting(&stack_a, &tmp);
+	/* testi verj*/
 	ft_stackclear(&stack_a);
 	free(sorted);
 	free(unsorted);
