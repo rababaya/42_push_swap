@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:26:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/12 15:05:17 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:21:23 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	sorting(t_stack **stack_a, t_stack **stack_b)
 	int		len;
 	int		dev;
 
-	if (!(*stack_a)) ///jnjel validaciaic heto
-		return ;
 	counter = 0;
 	len = ft_stacksize(*stack_a);
 	dev = deviation(len);

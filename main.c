@@ -6,13 +6,13 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:37 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/14 17:02:44 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:30:29 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*bubble_sort(int *sorting, int length)
+static int	*bubble_sort(int *sorting, int length)
 {
 	int	i;
 	int	temp;
@@ -37,6 +37,8 @@ static int	if_sorted(int *arr, int size)
 {
 	int	i;
 
+	if (size == 1)
+		return (1);
 	i = 0;
 	while (i < size - 1)
 	{
@@ -47,57 +49,89 @@ static int	if_sorted(int *arr, int size)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+t_stack	*stack_filling(int *unsorted, int *sorted, int len)
 {
-	int		len;
 	int		i;
 	int		j;
-	int		*unsorted;
-	int		*sorted;
-	t_stack	*stack_a;
 	t_stack	*tmp;
+	t_stack	*stack;
 
-	if (argc <= 1)
-		exit(1);
-	len = argc - 1;
-	unsorted = (int *)malloc(sizeof(int) * len);
-	sorted = (int *)malloc(sizeof(int) * len);
-	i = 0;
-	while (i < len)
-	{
-		unsorted[i] = ft_atoi(argv[i + 1]);
-		sorted[i] = ft_atoi(argv[i + 1]);
-		i++;
-	}
-
-	i = 0;
-
-	if (if_sorted(unsorted, len))
-			return (0);
-	sorted = bubble_sort(sorted, len);
 	i = 0;
 	j = 0;
-	stack_a = NULL;
+	stack = NULL;
 	while (i < len)
 	{
 		if (unsorted[i] == sorted[j])
 		{
 			tmp = ft_stacknew(j);
-			ft_stackadd_back(&stack_a, tmp);
+			if (!tmp)
+				return (NULL);
+			ft_stackadd_back(&stack, tmp);
 			j = 0;
 			i++;
 		}
 		else
 			j++;
 	}
-	/*testi skizb */
-	tmp = NULL;
-	if (len == 3)
+	return (stack);
+}
+
+int	*arr_dup(int *arr, int len)
+{
+	int	i;
+	int	*dest;
+
+	i = 0;
+	dest = malloc(len * sizeof(int));
+	while (i < len)
+	{
+		dest[i] = arr[i];
+		i++;
+	}
+	return (dest);
+}
+
+void	sort_all(int len, t_stack *stack_a, t_stack *stack_b)
+{
+	if (len == 2)
+		swap_a(stack_a);
+	else if (len == 3)
 		sort_for_3(&stack_a);
+	else if (len == 4)
+		sort_for_4(&stack_a, &stack_b);
+	else if (len == 5)
+		sort_for_5(&stack_a, &stack_b);
 	else
-		sorting(&stack_a, &tmp);
-	/* testi verj*/
-	ft_stackclear(&stack_a);
-	free(sorted);
+		sorting(&stack_a, &stack_b);
+}
+
+int	main(int argc, char **argv)
+{
+	char	**args;
+	int		len;
+	int		*sorted;
+	int		*unsorted;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+
+	len = 0;
+	args = join_split(&argv[1], argc);
+	if (!args)
+		return (1);
+	while (args[len])
+		len++;
+	unsorted = validation(args, len);
+	sorted = arr_dup(unsorted, len);
+	if (!unsorted || !sorted)
+		return (1);
+	if (if_sorted(unsorted, len))
+		return (free(unsorted), free(sorted), 0);
+	sorted = bubble_sort(sorted, len);
+	stack_a = stack_filling(unsorted, sorted, len);
+	if (!stack_a)
+		return (free(unsorted), free(sorted), 1);
+	stack_b = NULL;
+	sort_all(len, stack_a, stack_b);
 	free(unsorted);
+	free(sorted);
 }

@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:49:02 by rababaya          #+#    #+#             */
-/*   Updated: 2025/01/30 20:11:26 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:39:40 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ char	**ft_split(char const *s, char c)
 	if (!res)
 		return (NULL);
 	fill_split(s, c, res);
+	free((void *)s);
 	return (res);
 }
 /*

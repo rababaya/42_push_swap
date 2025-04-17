@@ -11,7 +11,7 @@ MAKE_LIB			=	make -C
 LIST_SRC_DIR		=	list_operations
 STACK_SRC_DIR		=	stack_operations
 BASIC_SORT_SRC_DIR	=	basic_sorts
-VALIDATION_SRC_DIR	=	srcs/validation
+VALIDATION_SRC_DIR	=	validation
  
 LIST_SRC			=	$(LIST_SRC_DIR)/ft_stackadd_back.c \
 						$(LIST_SRC_DIR)/ft_stackclear.c \
@@ -30,13 +30,8 @@ STACK_SRC			=	$(STACK_SRC_DIR)/swap.c \
 
 BASIC_SORT_SRC		=	$(BASIC_SORT_SRC_DIR)/manual_sorting.c
 
-VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation_main.c \
-						$(VALIDATION_SRC_DIR)/validation_numbers.c \
-						$(VALIDATION_SRC_DIR)/validation_duplicates.c \
-						$(VALIDATION_SRC_DIR)/string_parsing.c \
-						$(VALIDATION_SRC_DIR)/validation_quoted.c \
-						$(VALIDATION_SRC_DIR)/validation_limits.c \
-						$(VALIDATION_SRC_DIR)/error_handling.c
+VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/join_split.c \
+						$(VALIDATION_SRC_DIR)/validation.c
  
 PS_SRC				=	sorting.c
  
@@ -44,8 +39,8 @@ PUSH_SWAP_SRC		=	main.c \
 						$(LIST_SRC) \
 						$(STACK_SRC) \
 						$(PS_SRC) \
-						$(BASIC_SORT_SRC) #\
-						$(VALIDATION_SRC) \
+						$(BASIC_SORT_SRC) \
+						$(VALIDATION_SRC) 
  
 PUSH_SWAP_OBJ		=	$(PUSH_SWAP_SRC:%.c=obj/push_swap/%.o)
 

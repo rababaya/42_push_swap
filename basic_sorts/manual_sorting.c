@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manual_sorting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 14:32:56 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/14 16:46:21 by rababaya         ###   ########.fr       */
+/*   Created: 2025/04/15 17:44:32 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/15 17:46:23 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	sort_for_3(t_stack **stack_a)
 {
 	if ((*stack_a)->next->next->content == 2)
 	{
-		swap_a(*stack_a);
+		if ((*stack_a)->content == 1)
+			swap_a(*stack_a);
 		return ;
 	}
 	else if ((*stack_a)->next->content == 2)
@@ -94,7 +95,7 @@ void	sort_for_5(t_stack **stack_a, t_stack **stack_b)
 		(*stack_a) = (*stack_a)->next;
 	}
 	*stack_a = start;
-	if (i > 1)
+	if (i > 2)
 		while (i++ <= 4)
 			r_rotate_a(stack_a);
 	else
