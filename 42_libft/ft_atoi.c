@@ -6,7 +6,7 @@
 /*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:42:18 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/17 19:21:43 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:35:18 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static int	is_in_int(const char *str, int pm)
 {
 	if (pm == -1)
 	{
-		if ((ft_strlen(str) == 10 && ft_strncmp(str, "2147483648", 10) > 0)\
+		if ((ft_strlen(str) == 10 && ft_strncmp(str, "2147483648", 10) > 0)
 			|| ft_strlen(str) > 10)
 			return (0);
 	}
 	else
 	{
-		if ((ft_strlen(str) == 10 && ft_strncmp(str, "2147483647", 10) > 0)\
+		if ((ft_strlen(str) == 10 && ft_strncmp(str, "2147483647", 10) > 0)
 			|| ft_strlen(str) > 10)
 			return (0);
 	}
