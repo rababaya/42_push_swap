@@ -1,5 +1,5 @@
 CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror -I 42_libft -I includes
+CFLAGS				=	-Wall -Wextra -Werror -I 42_libft -I includes -g3
 RM					=	rm -f
 NAME				=	push_swap
  
@@ -33,7 +33,8 @@ BASIC_SORT_SRC		=	$(BASIC_SORT_SRC_DIR)/manual_sorting.c
 VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/join_split.c \
 						$(VALIDATION_SRC_DIR)/validation.c
  
-PS_SRC				=	sorting.c
+PS_SRC				=	sorting/sorting.c \
+						sorting/utils.c
  
 PUSH_SWAP_SRC		=	main.c \
 						$(LIST_SRC) \
@@ -57,7 +58,7 @@ $(PUSH_SWAP_OBJ):	obj/push_swap/%.o: %.c
 $(LIBFT_FILE):
 					$(MAKE_LIB) 42_libft
  
-$(NAME):			$(LIBFT_FILE) $(PUSH_SWAP_OBJ)
+$(NAME):			$(PUSH_SWAP_OBJ) $(LIBFT_FILE) 
 					$(CC) $(CFLAGS) $(PUSH_SWAP_OBJ) $(LDFLAGS) -o $@
  
 lib_clean:

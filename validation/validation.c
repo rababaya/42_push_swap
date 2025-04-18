@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 17:53:26 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/17 19:22:54 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:37:09 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static void	free_tab(char ***s)
 
 static void	free_with_message(char ***argv, int **arr, char *message)
 {
-	ft_printf("%s\n", message);
+	ft_putstr_fd(message, 2);
+	write(2, "\n", 1);
 	free(*arr);
 	free_tab(argv);
 }
@@ -42,10 +43,10 @@ static int	num_check(char *argv)
 	int	i;
 
 	i = 0;
+	if (argv[i] == '-' || argv[i] == '+')
+		i++;
 	while (argv[i])
 	{
-		if (argv[i] == '-' || argv[i] == '+')
-			i++;
 		if (!(ft_isdigit(argv[i])))
 		{
 			return (0);
@@ -63,14 +64,14 @@ static void	validation_helper(char **argv, int **arr, int i)
 	(*arr)[i] = ft_atoi(argv[i]);
 	if ((*arr)[i] == 0 && !(argv[i][0] == '0' && !argv[i][1]))
 	{
-		free_with_message(&argv, arr, "Atoi error or out of int borders");
+		free_with_message(&argv, arr, "Error");
 		exit(1);
 	}
 	while (j < i)
 	{
 		if ((*arr)[j] == (*arr)[i])
 		{
-			free_with_message(&argv, arr, "Duplicates!");
+			free_with_message(&argv, arr, "Error");
 			exit(1);
 		}
 		j++;
@@ -90,7 +91,7 @@ int	*validation(char **argv, int argc)
 	{
 		if (!num_check(argv[i]))
 		{
-			free_with_message(&argv, &arr, "Input is not numeric");
+			free_with_message(&argv, &arr, "Error");
 			exit(1);
 		}
 		validation_helper(argv, &arr, i);

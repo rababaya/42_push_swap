@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stackadd_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 19:23:07 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/07 17:22:29 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:41:11 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_stackadd_back(t_stack **lst, t_stack *new)
 {
+	if (!new)
+		return;
+	new->next = NULL;
 	if (!(*lst))
 		*lst = new;
 	else

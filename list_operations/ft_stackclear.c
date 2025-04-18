@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stackclear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:53:13 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/08 15:28:31 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:59:20 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	ft_stackclear(t_stack **lst)
 {
-	if (*lst)
+	t_stack	*tmp;
+
+	if (!lst || !*lst)
+		return;
+	while (*lst)
 	{
-		ft_stackclear(&(*lst)->next);
+		tmp = (*lst)->next;
 		free(*lst);
-		*lst = NULL;
+		*lst = tmp;
 	}
-	return ;
 }

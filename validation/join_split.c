@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:57:17 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/17 19:24:23 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:35:14 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char	**join_split(char **argv, int argc)
 	char	**args;
 	char	*str;
 
+	if (!**argv)
+		return (ft_putstr_fd("Error\n", 2), NULL);
 	(str = join(argv, argc));
 	if (!str)
 		return (NULL);

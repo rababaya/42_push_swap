@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:37 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/17 19:30:29 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:27:22 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,7 @@ static int	if_sorted(int *arr, int size)
 	return (1);
 }
 
-t_stack	*stack_filling(int *unsorted, int *sorted, int len)
-{
-	int		i;
-	int		j;
-	t_stack	*tmp;
-	t_stack	*stack;
-
-	i = 0;
-	j = 0;
-	stack = NULL;
-	while (i < len)
-	{
-		if (unsorted[i] == sorted[j])
-		{
-			tmp = ft_stacknew(j);
-			if (!tmp)
-				return (NULL);
-			ft_stackadd_back(&stack, tmp);
-			j = 0;
-			i++;
-		}
-		else
-			j++;
-	}
-	return (stack);
-}
-
-int	*arr_dup(int *arr, int len)
+static int	*arr_dup(int *arr, int len)
 {
 	int	i;
 	int	*dest;
@@ -91,25 +64,21 @@ int	*arr_dup(int *arr, int len)
 	return (dest);
 }
 
-void	sort_all(int len, t_stack *stack_a, t_stack *stack_b)
+static int	arr_len(char	**arr)
 {
-	if (len == 2)
-		swap_a(stack_a);
-	else if (len == 3)
-		sort_for_3(&stack_a);
-	else if (len == 4)
-		sort_for_4(&stack_a, &stack_b);
-	else if (len == 5)
-		sort_for_5(&stack_a, &stack_b);
-	else
-		sorting(&stack_a, &stack_b);
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
 
 int	main(int argc, char **argv)
 {
 	char	**args;
-	int		len;
 	int		*sorted;
+	int		len;
 	int		*unsorted;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -118,8 +87,7 @@ int	main(int argc, char **argv)
 	args = join_split(&argv[1], argc);
 	if (!args)
 		return (1);
-	while (args[len])
-		len++;
+	len = arr_len(args);
 	unsorted = validation(args, len);
 	sorted = arr_dup(unsorted, len);
 	if (!unsorted || !sorted)
@@ -131,7 +99,6 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (free(unsorted), free(sorted), 1);
 	stack_b = NULL;
-	sort_all(len, stack_a, stack_b);
-	free(unsorted);
-	free(sorted);
+	sort_all(len, &stack_a, &stack_b);
+	free_all(unsorted, sorted, &stack_a, &stack_b);
 }
