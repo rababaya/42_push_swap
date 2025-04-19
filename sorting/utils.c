@@ -6,57 +6,84 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:37:17 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/18 18:28:53 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:56:07 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_all(int len, t_stack **stack_a, t_stack **stack_b)
+static int	*bubble_sort(int *sorting, int length)
 {
-	if (len == 2)
-		swap_a(stack_a);
-	else if (len == 3)
-		sort_for_3(stack_a);
-	else if (len == 4)
-		sort_for_4(stack_a, stack_b);
-	else if (len == 5)
-		sort_for_5(stack_a, stack_b);
-	else
-		sorting(stack_a, stack_b);
+	int	i;
+	int	temp;
+
+	i = 0;
+	while (i < length - 1)
+	{
+		if (sorting[i] > sorting[i + 1])
+		{
+			temp = sorting[i];
+			sorting[i] = sorting[i + 1];
+			sorting[i + 1] = temp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+	return (sorting);
 }
 
-void	free_all(int *unsorted, int *sorted, t_stack **stack_a, t_stack **stack_b)
+static int	*arr_dup(int *arr, int len)
 {
-	ft_stackclear(stack_a);
-	ft_stackclear(stack_b);
-	free(unsorted);
-	free(sorted);
+	int	i;
+	int	*dest;
+
+	i = 0;
+	dest = malloc(len * sizeof(int));
+	while (i < len)
+	{
+		dest[i] = arr[i];
+		i++;
+	}
+	dest = bubble_sort(dest, len);
+	return (dest);
 }
 
-t_stack	*stack_filling(int *unsorted, int *sorted, int len)
+static void	fill_help(int len, int **uns, int **s, t_stack **stack)
 {
 	int		i;
 	int		j;
 	t_stack	*tmp;
-	t_stack	*stack;
 
-	i = 0;
 	j = 0;
-	stack = NULL;
+	i = 0;
 	while (i < len)
 	{
-		if (unsorted[i] == sorted[j])
+		if ((*uns)[i] == (*s)[j])
 		{
 			tmp = ft_stacknew(j);
 			if (!tmp)
-				return (ft_stackclear(&stack) ,NULL);
-			ft_stackadd_back(&stack, tmp);
+				return (ft_stackclear(stack), free(*s));
+			ft_stackadd_back(stack, tmp);
 			j = 0;
 			i++;
 		}
 		else
 			j++;
 	}
-	return (stack);
+}
+
+t_stack	*stack_filling(int *unsorted, int len)
+{
+	t_stack	*stack;
+	int		*sorted;
+
+	sorted = arr_dup(unsorted, len);
+	if (!sorted)
+		return (NULL);
+	stack = NULL;
+	fill_help(len, &unsorted, &sorted, &stack);
+	if (!stack)
+		return (NULL);
+	return (free(sorted), stack);
 }

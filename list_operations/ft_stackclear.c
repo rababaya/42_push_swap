@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:53:13 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/18 17:59:20 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:07:00 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_stackclear(t_stack **lst)
 	t_stack	*tmp;
 
 	if (!lst || !*lst)
-		return;
+		return ;
 	while (*lst)
 	{
 		tmp = (*lst)->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rababaya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:26:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/17 18:21:23 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:15:51 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ void	sorting(t_stack **stack_a, t_stack **stack_b)
 	{
 		if ((*stack_a)->content <= counter)
 		{
-			push_b((stack_a), (stack_b));
-			rotate_b((stack_b));
+			push((stack_a), (stack_b), 'b');
+			rotate((stack_b), 'b');
 			counter++;
 		}
 		else if ((*stack_a)->content <= counter + dev)
 		{
-			push_b((stack_a), (stack_b));
+			push((stack_a), (stack_b), 'b');
 			counter++;
 		}
 		else
-			rotate_a((stack_a));
+			rotate((stack_a), 'a');
 	}
 	filling_stack_a(stack_a, stack_b);
 }
@@ -84,15 +84,15 @@ static void	filling_helper(t_stack **stack_a, t_stack **stack_b, int current)
 	if (pos <= size / 2)
 	{
 		while (pos-- > 0)
-			rotate_b(stack_b);
+			rotate(stack_b, 'b');
 	}
 	else
 	{
 		pos = size - pos;
 		while (pos-- > 0)
-			r_rotate_b(stack_b);
+			r_rotate(stack_b, 'b');
 	}
-	push_a(stack_b, stack_a);
+	push(stack_b, stack_a, 'a');
 }
 
 void	filling_stack_a(t_stack **stack_a, t_stack **stack_b)
