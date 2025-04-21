@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stacksize.c                                     :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 18:37:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 17:22:32 by rababaya         ###   ########.fr       */
+/*   Created: 2025/04/21 16:12:52 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/21 18:28:37 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-int	ft_stacksize(t_stack *lst)
+int main(void)
 {
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
+    ft_printf("das");
+    return (0);
 }

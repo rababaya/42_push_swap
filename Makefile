@@ -2,17 +2,30 @@ CC					=	cc
 CFLAGS				=	-Wall -Wextra -Werror -I 42_libft -I includes -g3
 RM					=	rm -f
 NAME				=	push_swap
- 
-# Libraries
+CHECKER				=	checker
+
 LIBFT_FILE			=	42_libft/libft.a
 LDFLAGS     		=	-L 42_libft -l ft
 MAKE_LIB			=	make -C
- 
+
+BONUS_SRC_DIR		=	bonus
 LIST_SRC_DIR		=	list_operations
 STACK_SRC_DIR		=	stack_operations
 BASIC_SORT_SRC_DIR	=	basic_sorts
 VALIDATION_SRC_DIR	=	validation
- 
+
+BONUS_SRC			=	$(BONUS_SRC_DIR)/checker_bonus.c \
+						$(BONUS_SRC_DIR)/$(STACK_SRC_DIR)/push_bonus.c \
+						$(BONUS_SRC_DIR)/$(STACK_SRC_DIR)/r_rotate_bonus.c \
+						$(BONUS_SRC_DIR)/$(STACK_SRC_DIR)/rotate_bonus.c \
+						$(BONUS_SRC_DIR)/$(STACK_SRC_DIR)/swap_bonus.c \
+						$(BONUS_SRC_DIR)/$(LIST_SRC_DIR)/ft_stackclear_bonus.c \
+						$(BONUS_SRC_DIR)/$(LIST_SRC_DIR)/ft_stackadd_back_bonus.c \
+						$(BONUS_SRC_DIR)/$(LIST_SRC_DIR)/ft_stacksize_bonus.c \
+						$(BONUS_SRC_DIR)/$(LIST_SRC_DIR)/ft_stackadd_front_bonus.c \
+						$(BONUS_SRC_DIR)/$(LIST_SRC_DIR)/ft_stacklast_bonus.c \
+						$(BONUS_SRC_DIR)/$(LIST_SRC_DIR)/ft_stacknew_bonus.c
+
 LIST_SRC			=	$(LIST_SRC_DIR)/ft_stackadd_back.c \
 						$(LIST_SRC_DIR)/ft_stackclear.c \
 						$(LIST_SRC_DIR)/ft_stacksize.c \
@@ -40,13 +53,17 @@ PUSH_SWAP_SRC		=	main.c \
 						$(BASIC_SORT_SRC) \
 						$(VALIDATION_SRC) 
  
+BONUS_OBJ			=	$(BONUS_SRC:%.c=obj/push_swap/%.o)
+
 PUSH_SWAP_OBJ		=	$(PUSH_SWAP_SRC:%.c=obj/push_swap/%.o)
 
 all:				$(NAME)
  
-#bonus:				$(CHECKER)
+bonus:				$(CHECKER)
  
-obj:
+$(BONUS_OBJ):		obj/push_swap/%.o: %.c
+					@mkdir -p $(dir $@)
+					$(CC) $(CFLAGS) -c $< -o $@
 
 $(PUSH_SWAP_OBJ):	obj/push_swap/%.o: %.c
 					@mkdir -p $(dir $@)
@@ -55,6 +72,9 @@ $(PUSH_SWAP_OBJ):	obj/push_swap/%.o: %.c
 $(LIBFT_FILE):
 					$(MAKE_LIB) 42_libft
  
+$(CHECKER):			$(BONUS_OBJ) $(LIBFT_FILE)
+					$(CC) $(CFLAGS) $(BONUS_OBJ) $(LDFLAGS) -o $@
+
 $(NAME):			$(PUSH_SWAP_OBJ) $(LIBFT_FILE) 
 					$(CC) $(CFLAGS) $(PUSH_SWAP_OBJ) $(LDFLAGS) -o $@
  
@@ -68,8 +88,8 @@ clean:				lib_clean
 					rm -rf obj
  
 fclean:				clean lib_fclean
-					$(RM) $(NAME)
+					$(RM) $(NAME) $(CHECKER)
  
 re:					fclean all
  
-.PHONY:				all bonus lib_clean lib_fclean clean fclean re
+.PHONY:				all lib_clean lib_fclean clean fclean re bonus

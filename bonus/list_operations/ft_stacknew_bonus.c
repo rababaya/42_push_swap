@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stacksize.c                                     :+:      :+:    :+:   */
+/*   ft_stacknew_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 18:37:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 17:22:32 by rababaya         ###   ########.fr       */
+/*   Created: 2025/01/30 18:03:53 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/21 17:22:08 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_stacksize(t_stack *lst)
+t_stack	*ft_stacknew(int content)
 {
-	int	i;
+	t_stack	*new;
 
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
+	new = (t_stack *)malloc(sizeof(t_stack));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

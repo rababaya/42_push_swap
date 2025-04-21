@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stacksize.c                                     :+:      :+:    :+:   */
+/*   push_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 18:37:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 17:22:32 by rababaya         ###   ########.fr       */
+/*   Created: 2025/04/08 16:16:00 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/21 16:31:15 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-int	ft_stacksize(t_stack *lst)
+void	push(t_stack **stack, t_stack **dst)
 {
-	int	i;
+	t_stack	*tmp;
 
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
+	if (!(*stack))
+		return ;
+	tmp = (*stack)->next;
+	ft_stackadd_front(dst, *stack);
+	*stack = tmp;
 }

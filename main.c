@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:37 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 14:56:34 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/21 15:01:41 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	len = 0;
 	if (argc <= 1)
 		return (1);
+	len = 0;
 	args = join_split(&argv[1], argc);
 	if (!args)
 		return (1);

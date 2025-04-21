@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stacksize.c                                     :+:      :+:    :+:   */
+/*   ft_stackclear_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 18:37:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 17:22:32 by rababaya         ###   ########.fr       */
+/*   Created: 2025/01/31 10:53:13 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/21 17:22:03 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_stacksize(t_stack *lst)
+void	ft_stackclear(t_stack **lst)
 {
-	int	i;
+	t_stack	*tmp;
 
-	i = 0;
-	while (lst)
+	if (!lst || !*lst)
+		return ;
+	while (*lst)
 	{
-		i++;
-		lst = lst->next;
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
 	}
-	return (i);
 }

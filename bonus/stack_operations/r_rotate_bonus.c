@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stacksize.c                                     :+:      :+:    :+:   */
+/*   r_rotate_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 18:37:32 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 17:22:32 by rababaya         ###   ########.fr       */
+/*   Created: 2025/04/08 18:37:24 by rababaya          #+#    #+#             */
+/*   Updated: 2025/04/21 16:31:18 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-int	ft_stacksize(t_stack *lst)
+void	r_rotate(t_stack **stack)
 {
-	int	i;
+	t_stack	*tmp;
+	t_stack	*start;
 
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
+	if (!*stack || !(*stack)->next)
+		return ;
+	tmp = ft_stacklast(*stack);
+	start = (*stack);
+	while (start->next->next)
+		start = start->next;
+	start->next = NULL;
+	tmp->next = *stack;
+	(*stack) = tmp;
 }
