@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:37:17 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/19 16:56:07 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:46:26 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static int	*arr_dup(int *arr, int len)
 
 	i = 0;
 	dest = malloc(len * sizeof(int));
+	if (!dest)
+		return (NULL);
 	while (i < len)
 	{
 		dest[i] = arr[i];

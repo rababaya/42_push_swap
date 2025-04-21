@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 18:37:24 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/19 17:12:15 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:57:13 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	r_rotate(t_stack **stack, char c)
 	(*stack) = tmp;
 	ft_printf("rr%c\n", c);
 }
-

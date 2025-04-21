@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 16:16:00 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/19 17:02:37 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:59:19 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ void	push(t_stack **stack, t_stack **dst, char c)
 	tmp = (*stack)->next;
 	ft_stackadd_front(dst, *stack);
 	*stack = tmp;
-	write(1, "p", 1);
-	write(1, &c, 1);
-	write(1, "\n", 1);
+	ft_printf("p%c\n", c);
 }

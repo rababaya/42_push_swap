@@ -15,11 +15,8 @@ VALIDATION_SRC_DIR	=	validation
  
 LIST_SRC			=	$(LIST_SRC_DIR)/ft_stackadd_back.c \
 						$(LIST_SRC_DIR)/ft_stackclear.c \
-						$(LIST_SRC_DIR)/ft_stackiter.c \
-						$(LIST_SRC_DIR)/ft_stackmap.c \
 						$(LIST_SRC_DIR)/ft_stacksize.c \
 						$(LIST_SRC_DIR)/ft_stackadd_front.c \
-						$(LIST_SRC_DIR)/ft_stackdelone.c \
 						$(LIST_SRC_DIR)/ft_stacklast.c \
 						$(LIST_SRC_DIR)/ft_stacknew.c
 
