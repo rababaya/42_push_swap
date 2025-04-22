@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:27:22 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/22 15:42:42 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:06:08 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	swap(t_stack **stack)
 {
 	t_stack	*tmp;
 
+	if (!*stack || !(*stack)->next)
+		return ;
 	tmp = (*stack)->next->next;
 	(*stack)->next->next = *stack;
 	(*stack) = (*stack)->next;
