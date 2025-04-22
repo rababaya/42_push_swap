@@ -6,11 +6,17 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 17:13:14 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 16:31:21 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:41:42 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
+
+void	rr(t_stack **s_a, t_stack	**s_b)
+{
+	rotate(s_a);
+	rotate(s_b);
+}
 
 void	rotate(t_stack **stack)
 {

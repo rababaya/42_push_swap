@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 16:20:50 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 18:34:59 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:22:26 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+int		if_sorted_stack(t_stack **stack_a);
 t_stack	*stack_filling(int *unsorted, int len);
 
 int		*validation(char **argv, int argc);
 char	**join_split(char **argv, int argc);
 
+void	rr(t_stack **s_a, t_stack	**s_b);
+void	rrr(t_stack **s_a, t_stack	**s_b);
+void	ss(t_stack **s_a, t_stack	**s_b);
 void	swap(t_stack **stack);
 void	push(t_stack **stack, t_stack **dst);
 void	rotate(t_stack **stack);

@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:37:17 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/22 15:07:49 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:28:25 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
+
+int	if_sorted_stack(t_stack **stack_a)
+{
+	t_stack	*tmp;
+
+	tmp = *stack_a;
+	while (tmp->next != NULL)
+	{
+		if (tmp->content > tmp->next->content)
+			return (ft_stackclear(stack_a), 0);
+		tmp = tmp->next;
+	}
+	ft_stackclear(stack_a);
+	return (1);
+}
 
 static int	*bubble_sort(int *sorting, int length)
 {

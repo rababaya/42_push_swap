@@ -6,7 +6,7 @@
 /*   By: rababaya <rababaya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:37 by rababaya          #+#    #+#             */
-/*   Updated: 2025/04/21 15:01:41 by rababaya         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:08:44 by rababaya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,6 @@ static int	if_sorted(int *arr, int size)
 	return (1);
 }
 
-static void	free_all(int *unsorted, t_stack **stack_a)
-{
-	ft_stackclear(stack_a);
-	free(unsorted);
-	exit(1);
-}
-
 static int	arr_len(char	**arr)
 {
 	int	i;
@@ -68,7 +61,7 @@ int	main(int argc, char **argv)
 	t_stack	*stack_b;
 
 	if (argc <= 1)
-		return (1);
+		return (0);
 	len = 0;
 	args = join_split(&argv[1], argc);
 	if (!args)
@@ -81,8 +74,9 @@ int	main(int argc, char **argv)
 		return (free(unsorted), 0);
 	stack_a = stack_filling(unsorted, len);
 	if (!stack_a)
-		return (free(unsorted), 1);
+		return (1);
 	stack_b = NULL;
 	sort_all(len, &stack_a, &stack_b);
-	free_all(unsorted, &stack_a);
+	ft_stackclear(&stack_a);
+	return (0);
 }

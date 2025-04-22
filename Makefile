@@ -15,6 +15,9 @@ BASIC_SORT_SRC_DIR	=	basic_sorts
 VALIDATION_SRC_DIR	=	validation
 
 BONUS_SRC			=	$(BONUS_SRC_DIR)/checker_bonus.c \
+						$(BONUS_SRC_DIR)/utils_bonus.c \
+						$(BONUS_SRC_DIR)/$(VALIDATION_SRC_DIR)/validation_bonus.c \
+						$(BONUS_SRC_DIR)/$(VALIDATION_SRC_DIR)/join_split_bonus.c \
 						$(BONUS_SRC_DIR)/$(STACK_SRC_DIR)/push_bonus.c \
 						$(BONUS_SRC_DIR)/$(STACK_SRC_DIR)/r_rotate_bonus.c \
 						$(BONUS_SRC_DIR)/$(STACK_SRC_DIR)/rotate_bonus.c \
